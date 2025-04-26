@@ -85,6 +85,9 @@ void APyroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APyroCharacter::Look);
+
+		//lookie here
+		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &APyroCharacter::Shoot);
 	}
 	else
 	{
@@ -126,4 +129,9 @@ void APyroCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void APyroCharacter::Shoot()
+{
+	UE_LOG(LogTemp, Display, TEXT("Kablammo"));
 }
