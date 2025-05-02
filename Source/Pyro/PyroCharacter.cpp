@@ -133,6 +133,8 @@ void APyroCharacter::Look(const FInputActionValue& Value)
 
 void APyroCharacter::Shoot()
 {
+	int count = 100;
+
 	UE_LOG(LogTemp, Display, TEXT("Kablammo"));
 	GetWorld()->SpawnActor<AFireball>(Fireball, GetActorLocation(), GetActorRotation());
 }

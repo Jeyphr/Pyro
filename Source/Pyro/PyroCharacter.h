@@ -66,6 +66,8 @@ protected:
 
 	//lookee here
 	void Shoot();
+
+	void Shooting();
 			
 
 protected:
