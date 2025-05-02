@@ -138,3 +138,7 @@ void APyroCharacter::Shoot()
 	UE_LOG(LogTemp, Display, TEXT("Kablammo"));
 	GetWorld()->SpawnActor<AFireball>(Fireball, GetActorLocation(), GetActorRotation());
 }
+
+void APyroCharacter::Shooting() {
+
+}
