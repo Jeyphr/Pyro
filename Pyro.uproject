@@ -1,13 +1,16 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{1EF12ACB-4612-0112-7755-F4BE4947F9F5}",
+	"EngineAssociation": "{CAA67A59-40D6-5B9D-5A09-8A87221A2D79}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
 			"Name": "Pyro",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
