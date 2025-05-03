@@ -17,9 +17,14 @@ public:
 	// Sets default values for this actor's properties
 	AFireball();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float Lifespan = 5.0f;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	float _lifeCountdown = 5.0f;
 
 public:	
 	// Called every frame

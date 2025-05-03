@@ -25,6 +25,7 @@ AFireball::AFireball()
 void AFireball::BeginPlay()
 {
 	Super::BeginPlay();
+	_lifeCountdown = Lifespan;
 	
 }
 
@@ -32,5 +33,11 @@ void AFireball::BeginPlay()
 void AFireball::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (_lifeCountdown > 0.0f) {
+		_lifeCountdown -= DeltaTime;
+	}
+	else {
+		Destroy();
+	}
 }
 
