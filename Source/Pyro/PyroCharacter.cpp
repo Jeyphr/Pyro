@@ -16,6 +16,7 @@ DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 //////////////////////////////////////////////////////////////////////////
 // APyroCharacter
 
+
 APyroCharacter::APyroCharacter()
 {
 	// Set size for collision capsule
@@ -133,10 +134,11 @@ void APyroCharacter::Look(const FInputActionValue& Value)
 
 void APyroCharacter::Shoot()
 {
-	int count = 100;
-
-	UE_LOG(LogTemp, Display, TEXT("Kablammo"));
-	GetWorld()->SpawnActor<AFireball>(Fireball, GetActorLocation(), GetActorRotation());
+	if (ammo > 0) {
+		UE_LOG(LogTemp, Display, TEXT("Kablammo"));
+		GetWorld()->SpawnActor<AFireball>(Fireball, GetActorLocation(), GetActorRotation());
+		ammo--;
+	}
 }
 
 void APyroCharacter::Shooting() {

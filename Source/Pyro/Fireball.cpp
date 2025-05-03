@@ -2,7 +2,6 @@
 
 
 #include "Fireball.h"
-
 // Sets default values
 AFireball::AFireball()
 {
@@ -33,6 +32,5 @@ void AFireball::BeginPlay()
 void AFireball::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 

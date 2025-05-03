@@ -52,8 +52,16 @@ class APyroCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* ShootAction;
 
+
+
 public:
 	APyroCharacter();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int ammo = 10;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int ammoMax = 10;
 	
 
 protected:
