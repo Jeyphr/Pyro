@@ -62,6 +62,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int ammoMax = 10;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UUserWidget* ammoCounter;
 	
 
 protected:
@@ -75,7 +78,7 @@ protected:
 	//lookee here
 	void Shoot();
 
-	void Shooting();
+	void updateUI();
 			
 
 protected:

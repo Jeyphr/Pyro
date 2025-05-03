@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "PyroCharacter.h"
+#include "AmmoCounterWidget.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -132,6 +133,7 @@ void APyroCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
+//lookee here
 void APyroCharacter::Shoot()
 {
 	if (ammo > 0) {
@@ -141,6 +143,9 @@ void APyroCharacter::Shoot()
 	}
 }
 
-void APyroCharacter::Shooting() {
-
+void APyroCharacter::updateUI() {
+	if (ammoCounter != nullptr) {
+		auto doodad = Cast<UAmmoCounterWidget>(ammoCounter);
+		doodad->ammoCounterTextBlock->SetText(FText::Format(FText::FromString(TEXT("{0} / {1}")),ammo,ammoMax));
+	}
 }
