@@ -89,7 +89,8 @@ void APyroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APyroCharacter::Look);
 
 		//lookie here
-		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Triggered, this, &APyroCharacter::Shoot);
+		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Started, this	, &APyroCharacter::Shoot);
+		EnhancedInputComponent->BindAction(ShootAction, ETriggerEvent::Completed, this	, &APyroCharacter::StopShooting);
 	}
 	else
 	{
@@ -101,8 +102,30 @@ void APyroCharacter::BeginPlay() {
 	Super::BeginPlay();
 
 	AmmoCounter->AddToViewport(0);
+	_isShooting = false;
 	updateUI();
 }
+
+void APyroCharacter::Tick(float DeltaTime) {
+	Super::Tick(DeltaTime);
+
+	if (_isShooting) {
+		if (ammo > 0) {
+			UE_LOG(LogTemp, Display, TEXT("Kablammo"));
+			GetWorld()->SpawnActor<AFireball>(Fireball, GetActorLocation(), GetActorRotation());
+			ammo--;
+
+		}
+	}
+	else {
+		if (ammo < ammoMax) {
+			ammo++;
+		}
+	}
+
+	updateUI();
+}
+
 
 void APyroCharacter::Move(const FInputActionValue& Value)
 {
@@ -143,12 +166,12 @@ void APyroCharacter::Look(const FInputActionValue& Value)
 //lookee here
 void APyroCharacter::Shoot()
 {
-	if (ammo > 0) {
-		UE_LOG(LogTemp, Display, TEXT("Kablammo"));
-		GetWorld()->SpawnActor<AFireball>(Fireball, GetActorLocation(), GetActorRotation());
-		ammo--;
-		updateUI();
-	}
+	_isShooting = true;
+}
+
+void APyroCharacter::StopShooting()
+{
+	_isShooting = false;
 }
 
 void APyroCharacter::updateUI() {

@@ -58,10 +58,10 @@ public:
 	APyroCharacter();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int ammo = 10;
+	int ammo = 100;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int ammoMax = 10;
+	int ammoMax = 100;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UUserWidget* AmmoCounter;
@@ -77,10 +77,13 @@ protected:
 
 	//lookee here
 	void Shoot();
+	void StopShooting();
+	bool _isShooting;
 
 	void updateUI();
 
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 			
 
 protected:
