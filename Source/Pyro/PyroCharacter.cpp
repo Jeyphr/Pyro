@@ -97,6 +97,13 @@ void APyroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	}
 }
 
+void APyroCharacter::BeginPlay() {
+	Super::BeginPlay();
+
+	AmmoCounter->AddToViewport(0);
+	updateUI();
+}
+
 void APyroCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
@@ -140,12 +147,17 @@ void APyroCharacter::Shoot()
 		UE_LOG(LogTemp, Display, TEXT("Kablammo"));
 		GetWorld()->SpawnActor<AFireball>(Fireball, GetActorLocation(), GetActorRotation());
 		ammo--;
+		updateUI();
 	}
 }
 
 void APyroCharacter::updateUI() {
-	if (ammoCounter != nullptr) {
-		auto doodad = Cast<UAmmoCounterWidget>(ammoCounter);
+	if (AmmoCounter != nullptr) {
+		auto doodad = Cast<UAmmoCounterWidget>(AmmoCounter);
 		doodad->ammoCounterTextBlock->SetText(FText::Format(FText::FromString(TEXT("{0} / {1}")),ammo,ammoMax));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Display, TEXT("No Ammo Counter!"));
 	}
 }
